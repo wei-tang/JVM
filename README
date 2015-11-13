@@ -1,0 +1,8 @@
+This project is used to track JVM components study and future development. 
+
+Java virtual machine: 
+
+1. Classloader
+2. Just-in-time compiler
+3. garbage collection
+4. synchronization
