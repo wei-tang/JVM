@@ -1,0 +1,252 @@
+CompileCommand: print Sync.incCounter
+OpenJDK 64-Bit Server VM warning: printing of assembly code is enabled; turning on DebugNonSafepoints to gain additional output
+Loaded disassembler from /Users/wei/usr/jvm/openjdk-1.9.0-internal-debug/lib/server/hsdis-amd64.dylib
+Compiled method (c2)    1022    9   !         Sync::incCounter (25 bytes)
+ total in heap  [0x0000000107e04e90,0x0000000107e052a0] = 1040
+ relocation     [0x0000000107e04fc0,0x0000000107e04fd0] = 16
+ main code      [0x0000000107e04fe0,0x0000000107e051c0] = 480
+ stub code      [0x0000000107e051c0,0x0000000107e051d8] = 24
+ oops           [0x0000000107e051d8,0x0000000107e051e0] = 8
+ metadata       [0x0000000107e051e0,0x0000000107e051f0] = 16
+ scopes data    [0x0000000107e051f0,0x0000000107e05218] = 40
+ scopes pcs     [0x0000000107e05218,0x0000000107e05298] = 128
+ dependencies   [0x0000000107e05298,0x0000000107e052a0] = 8
+Decoding compiled method 0x0000000107e04e90:
+Code:
+[Disassembling for mach='i386:x86-64']
+[Entry Point]
+[Constants]
+  # {method} {0x000000010ffc2268} 'incCounter' '()V' in 'Sync'
+  #           [sp+0x30]  (sp of caller)
+  ;; N160: #	B1 <- BLOCK HEAD IS JUNK   Freq: 1
+
+  0x0000000107e04fe0: mov    0x8(%rsi),%r10d
+  0x0000000107e04fe4: shl    $0x3,%r10
+  0x0000000107e04fe8: cmp    %r10,%rax
+  0x0000000107e04feb: jne    0x0000000107d68000  ;   {runtime_call ic_miss_stub}
+  0x0000000107e04ff1: nop
+  0x0000000107e04ff2: nop
+  0x0000000107e04ff3: nop
+  0x0000000107e04ff4: nop
+  0x0000000107e04ff5: nop
+  0x0000000107e04ff6: nop
+  0x0000000107e04ff7: nop
+  0x0000000107e04ff8: nop
+  0x0000000107e04ff9: nop
+  0x0000000107e04ffa: nop
+  0x0000000107e04ffb: nop
+  0x0000000107e04ffc: nop
+  0x0000000107e04ffd: nop
+  0x0000000107e04ffe: nop
+  0x0000000107e04fff: nop
+[Verified Entry Point]
+  ;; B1: #	B6 B2 <- BLOCK HEAD IS JUNK   Freq: 1
+
+  0x0000000107e05000: mov    %eax,-0x16000(%rsp)
+  0x0000000107e05007: push   %rbp
+  0x0000000107e05008: sub    $0x20,%rsp         ;*synchronization entry
+                                                ; - Sync::incCounter@-1 (line 4)
+
+  0x0000000107e0500c: mov    %rsi,%rbp
+  0x0000000107e0500f: mov    (%rsi),%rax
+  0x0000000107e05012: mov    %rax,%r10
+  0x0000000107e05015: and    $0x7,%r10
+  0x0000000107e05019: cmp    $0x5,%r10
+  0x0000000107e0501d: jne    0x0000000107e05077
+  ;; B2: #	B10 B3 <- B1  Freq: 0.999999
+
+  0x0000000107e0501f: mov    $0xf800c006,%r11d  ;   {metadata('Sync')}
+  0x0000000107e05025: movabs $0x0,%r10
+  0x0000000107e0502f: lea    (%r10,%r11,8),%r10
+  0x0000000107e05033: mov    0xb0(%r10),%r10
+  0x0000000107e0503a: mov    %r10,%r11
+  0x0000000107e0503d: or     %r15,%r11
+  0x0000000107e05040: mov    %r11,%r8
+  0x0000000107e05043: xor    %rax,%r8
+  0x0000000107e05046: test   $0xffffffffffffff87,%r8
+  0x0000000107e0504d: jne    0x0000000107e05184  ;*monitorenter
+                                                ; - Sync::incCounter@3 (line 4)
+
+  ;; B3: #	B8 B4 <- B7 B6 B2 B14  Freq: 1
+
+  0x0000000107e05053: incl   0xc(%rbp)
+  0x0000000107e05056: mov    $0x7,%r10d
+  0x0000000107e0505c: and    0x0(%rbp),%r10
+  0x0000000107e05060: cmp    $0x5,%r10
+  0x0000000107e05064: jne    0x0000000107e050ce  ;*monitorexit
+                                                ; - Sync::incCounter@15 (line 6)
+
+  ;; B4: #	N160 <- B9 B8 B3  Freq: 1
+
+  0x0000000107e05066: add    $0x20,%rsp
+  0x0000000107e0506a: pop    %rbp
+  0x0000000107e0506b: test   %eax,-0x1e1e071(%rip)        # 0x0000000105fe7000
+                                                ;   {poll_return}
+  0x0000000107e05071: retq   
+  ;; B5: #	B6 <- B10  Freq: 9.99999e-13
+
+  0x0000000107e05072: lock cmpxchg %r10,(%rsi)
+  ;; B6: #	B3 B7 <- B1 B5  Freq: 1e-06
+
+  0x0000000107e05077: lea    0x10(%rsp),%rbx
+  0x0000000107e0507c: mov    (%rsi),%rax
+  0x0000000107e0507f: test   $0x2,%rax
+  0x0000000107e05085: jne    0x0000000107e050ab
+  0x0000000107e05087: or     $0x1,%rax
+  0x0000000107e0508b: mov    %rax,(%rbx)
+  0x0000000107e0508e: lock cmpxchg %rbx,(%rsi)
+  0x0000000107e05093: je     0x0000000107e050be
+  0x0000000107e05099: sub    %rsp,%rax
+  0x0000000107e0509c: and    $0xfffffffffffff007,%rax
+  0x0000000107e050a3: mov    %rax,(%rbx)
+  0x0000000107e050a6: jmpq   0x0000000107e050be
+  0x0000000107e050ab: mov    %rax,%r10
+  0x0000000107e050ae: xor    %rax,%rax
+  0x0000000107e050b1: lock cmpxchg %r15,0x7e(%r10)
+  0x0000000107e050b7: movq   $0x3,(%rbx)
+  0x0000000107e050be: je     0x0000000107e05053
+  ;; B7: #	B3 <- B13 B6  Freq: 2e-12
+
+  0x0000000107e050c0: lea    0x10(%rsp),%rdx
+  0x0000000107e050c5: nop
+  0x0000000107e050c6: nop
+  0x0000000107e050c7: callq  0x0000000107dffa60  ; ImmutableOopMap{rbp=Oop }
+                                                ;*monitorenter
+                                                ; - Sync::incCounter@3 (line 4)
+                                                ;   {runtime_call _complete_monitor_locking_Java}
+  0x0000000107e050cc: jmp    0x0000000107e05053
+  ;; B8: #	B4 B9 <- B3  Freq: 1e-06
+
+  0x0000000107e050ce: lea    0x10(%rsp),%rax
+  0x0000000107e050d3: cmpq   $0x0,(%rax)
+  0x0000000107e050da: je     0x0000000107e05161
+  0x0000000107e050e0: mov    0x0(%rbp),%r10
+  0x0000000107e050e4: test   $0x2,%r10
+  0x0000000107e050eb: je     0x0000000107e05158
+  0x0000000107e050ed: xor    %rax,%rax
+  0x0000000107e050f0: or     0x8e(%r10),%rax
+  0x0000000107e050f7: jne    0x0000000107e05161
+  0x0000000107e050f9: mov    0x9e(%r10),%rax
+  0x0000000107e05100: or     0x96(%r10),%rax
+  0x0000000107e05107: jne    0x0000000107e05113
+  0x0000000107e05109: movq   $0x0,0x7e(%r10)
+  0x0000000107e05111: jmp    0x0000000107e05161
+  0x0000000107e05113: cmpq   $0x0,0xa6(%r10)
+  0x0000000107e0511e: je     0x0000000107e0514c
+  0x0000000107e05120: movq   $0x0,0x7e(%r10)
+  0x0000000107e05128: lock addl $0x0,(%rsp)
+  0x0000000107e0512d: cmpq   $0x0,0xa6(%r10)
+  0x0000000107e05138: jne    0x0000000107e05151
+  0x0000000107e0513a: movabs $0x0,%rax
+  0x0000000107e05144: lock cmpxchg %r15,0x7e(%r10)
+  0x0000000107e0514a: jne    0x0000000107e05151
+  0x0000000107e0514c: or     $0x1,%eax
+  0x0000000107e0514f: jmp    0x0000000107e05161
+  0x0000000107e05151: test   $0x0,%eax
+  0x0000000107e05156: jmp    0x0000000107e05161
+  0x0000000107e05158: mov    (%rax),%r10
+  0x0000000107e0515b: lock cmpxchg %r10,0x0(%rbp)
+  0x0000000107e05161: je     0x0000000107e05066
+  ;; B9: #	B4 <- B8  Freq: 1e-12
+
+  0x0000000107e05167: mov    %rbp,%rdi
+  0x0000000107e0516a: lea    0x10(%rsp),%rsi    ;*monitorenter
+                                                ; - Sync::incCounter@3 (line 4)
+
+  0x0000000107e0516f: mov    %r15,%rdx
+  0x0000000107e05172: movabs $0x107343800,%r10
+  0x0000000107e0517c: callq  *%r10              ;*monitorexit
+                                                ; - Sync::incCounter@15 (line 6)
+
+  0x0000000107e0517f: jmpq   0x0000000107e05066
+  ;; B10: #	B5 B11 <- B2  Freq: 9.99999e-07
+
+  0x0000000107e05184: test   $0x7,%r8
+  0x0000000107e0518b: jne    0x0000000107e05072
+  ;; B11: #	B13 B12 <- B10  Freq: 9.99998e-07
+
+  0x0000000107e05191: test   $0x300,%r8
+  0x0000000107e05198: jne    0x0000000107e051a7
+  ;; B12: #	B13 <- B11  Freq: 9.99997e-07
+
+  0x0000000107e0519a: and    $0x37f,%rax
+  0x0000000107e051a1: mov    %rax,%r11
+  0x0000000107e051a4: or     %r15,%r11
+  ;; B13: #	B7 B14 <- B12 B11  Freq: 9.99998e-07
+
+  0x0000000107e051a7: lock cmpxchg %r11,(%rsi)
+  0x0000000107e051ac: jne    0x0000000107e050c0
+  ;; B14: #	B3 <- B13  Freq: 9.99997e-07
+
+  0x0000000107e051b2: jmpq   0x0000000107e05053
+  0x0000000107e051b7: hlt    
+  0x0000000107e051b8: hlt    
+  0x0000000107e051b9: hlt    
+  0x0000000107e051ba: hlt    
+  0x0000000107e051bb: hlt    
+  0x0000000107e051bc: hlt    
+  0x0000000107e051bd: hlt    
+  0x0000000107e051be: hlt    
+  0x0000000107e051bf: hlt    
+[Exception Handler]
+[Stub Code]
+  0x0000000107e051c0: jmpq   0x0000000107dcd3e0  ;   {no_reloc}
+[Deopt Handler Code]
+  0x0000000107e051c5: callq  0x0000000107e051ca
+  0x0000000107e051ca: subq   $0x5,(%rsp)
+  0x0000000107e051cf: jmpq   0x0000000107d697a0  ;   {runtime_call DeoptimizationBlob}
+  0x0000000107e051d4: hlt    
+  0x0000000107e051d5: hlt    
+  0x0000000107e051d6: hlt    
+  0x0000000107e051d7: hlt    
+pc-bytecode offsets:
+PcDesc(pc=0x107e04fdf offset=ffffffff bits=0):
+PcDesc(pc=0x107e0500c offset=2c bits=0):
+   Sync::incCounter@-1 (line 4)
+PcDesc(pc=0x107e05053 offset=73 bits=0):
+   Sync::incCounter@3 (line 4)
+PcDesc(pc=0x107e05066 offset=86 bits=0):
+   Sync::incCounter@15 (line 6)
+PcDesc(pc=0x107e050cc offset=ec bits=0):
+   Sync::incCounter@3 (line 4)
+   Locals
+    - l0: reg rbp [10],oop
+    - l1: reg rbp [10],oop
+    - l2: empty
+   Monitor stack
+    - @0: monitor{reg rbp [10],oop,stack[16]}
+PcDesc(pc=0x107e0516f offset=18f bits=0):
+   Sync::incCounter@3 (line 4)
+PcDesc(pc=0x107e0517f offset=19f bits=0):
+   Sync::incCounter@15 (line 6)
+PcDesc(pc=0x107e051d9 offset=1f9 bits=0):
+
+ImmutableOopMap{rbp=Oop }pc offsets: 236 ------------------------------------------------------------------------
+Sync::incCounter()V
+  interpreter_invocation_count:    89738 
+  invocation_counter:               9753 
+  backedge_counter:                    1 
+  mdo size: 376 bytes
+
+0 fast_aload_0
+1 dup
+2 astore_1
+3 monitorenter
+4 fast_aload_0
+5 dup
+6 fast_igetfield 1 <Sync.counter/I> 
+9 iconst_1
+10 iadd
+11 fast_iputfield 1 <Sync.counter/I> 
+14 aload_1
+15 monitorexit
+16 goto 24
+  0   bci: 16   JumpData            taken(86439) displacement(24)
+19 astore_2
+20 aload_1
+21 monitorexit
+22 aload_2
+23 athrow
+24 return
+------------------------------------------------------------------------
+Total MDO size: 376 bytes

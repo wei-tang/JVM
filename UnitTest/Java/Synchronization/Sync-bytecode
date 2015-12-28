@@ -1,0 +1,130 @@
+Classfile /Users/wei/wsp/UnitTest/Java/Synchronization/Sync.class
+  Last modified 2015-6-28; size 550 bytes
+  MD5 checksum 837204a7f878a9852048fd3a45c7f7d7
+  Compiled from "Sync.java"
+public class Sync
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Fieldref           #3.#21         // Sync.counter:I
+   #2 = Methodref          #7.#22         // java/lang/Object."<init>":()V
+   #3 = Class              #23            // Sync
+   #4 = Methodref          #3.#22         // Sync."<init>":()V
+   #5 = Integer            10000000
+   #6 = Methodref          #3.#24         // Sync.incCounter:()V
+   #7 = Class              #25            // java/lang/Object
+   #8 = Utf8               counter
+   #9 = Utf8               I
+  #10 = Utf8               incCounter
+  #11 = Utf8               ()V
+  #12 = Utf8               Code
+  #13 = Utf8               LineNumberTable
+  #14 = Utf8               StackMapTable
+  #15 = Class              #26            // java/lang/Throwable
+  #16 = Utf8               <init>
+  #17 = Utf8               main
+  #18 = Utf8               ([Ljava/lang/String;)V
+  #19 = Utf8               SourceFile
+  #20 = Utf8               Sync.java
+  #21 = NameAndType        #8:#9          // counter:I
+  #22 = NameAndType        #16:#11        // "<init>":()V
+  #23 = Utf8               Sync
+  #24 = NameAndType        #10:#11        // incCounter:()V
+  #25 = Utf8               java/lang/Object
+  #26 = Utf8               java/lang/Throwable
+{
+  int counter;
+    descriptor: I
+    flags:
+
+  public void incCounter();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: dup
+         6: getfield      #1                  // Field counter:I
+         9: iconst_1
+        10: iadd
+        11: putfield      #1                  // Field counter:I
+        14: aload_1
+        15: monitorexit
+        16: goto          24
+        19: astore_2
+        20: aload_1
+        21: monitorexit
+        22: aload_2
+        23: athrow
+        24: return
+      Exception table:
+         from    to  target type
+             4    16    19   any
+            19    22    19   any
+      LineNumberTable:
+        line 4: 0
+        line 5: 4
+        line 6: 14
+        line 7: 24
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class Sync, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  public Sync();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #2                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iconst_0
+         6: putfield      #1                  // Field counter:I
+         9: return
+      LineNumberTable:
+        line 9: 0
+        line 10: 4
+        line 11: 9
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: new           #3                  // class Sync
+         3: dup
+         4: invokespecial #4                  // Method "<init>":()V
+         7: astore_1
+         8: iconst_0
+         9: istore_2
+        10: iload_2
+        11: ldc           #5                  // int 10000000
+        13: if_icmpge     26
+        16: aload_1
+        17: invokevirtual #6                  // Method incCounter:()V
+        20: iinc          2, 1
+        23: goto          10
+        26: return
+      LineNumberTable:
+        line 14: 0
+        line 15: 8
+        line 16: 16
+        line 15: 20
+        line 17: 26
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 10
+          locals = [ class Sync, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 15
+}
+SourceFile: "Sync.java"

@@ -1,0 +1,96 @@
+CompileCommand: print SyncNo.incCounter
+OpenJDK 64-Bit Server VM warning: printing of assembly code is enabled; turning on DebugNonSafepoints to gain additional output
+Loaded disassembler from /Users/wei/usr/jvm/openjdk-1.9.0-internal-debug/lib/server/hsdis-amd64.dylib
+Compiled method (c2)     634    9             SyncNo::incCounter (11 bytes)
+ total in heap  [0x000000010fca5c90,0x000000010fca5ea0] = 528
+ relocation     [0x000000010fca5dc0,0x000000010fca5dd0] = 16
+ main code      [0x000000010fca5de0,0x000000010fca5e20] = 64
+ stub code      [0x000000010fca5e20,0x000000010fca5e38] = 24
+ oops           [0x000000010fca5e38,0x000000010fca5e40] = 8
+ metadata       [0x000000010fca5e40,0x000000010fca5e48] = 8
+ scopes data    [0x000000010fca5e48,0x000000010fca5e58] = 16
+ scopes pcs     [0x000000010fca5e58,0x000000010fca5e98] = 64
+ dependencies   [0x000000010fca5e98,0x000000010fca5ea0] = 8
+Decoding compiled method 0x000000010fca5c90:
+Code:
+[Disassembling for mach='i386:x86-64']
+[Entry Point]
+[Constants]
+  # {method} {0x0000000117e631e0} 'incCounter' '()V' in 'SyncNo'
+  #           [sp+0x20]  (sp of caller)
+  ;; N18: #	B1 <- BLOCK HEAD IS JUNK   Freq: 1
+
+  0x000000010fca5de0: mov    0x8(%rsi),%r10d
+  0x000000010fca5de4: shl    $0x3,%r10
+  0x000000010fca5de8: cmp    %r10,%rax
+  0x000000010fca5deb: jne    0x000000010fc09000  ;   {runtime_call ic_miss_stub}
+  0x000000010fca5df1: nop
+  0x000000010fca5df2: nop
+  0x000000010fca5df3: nop
+  0x000000010fca5df4: nop
+  0x000000010fca5df5: nop
+  0x000000010fca5df6: nop
+  0x000000010fca5df7: nop
+  0x000000010fca5df8: nop
+  0x000000010fca5df9: nop
+  0x000000010fca5dfa: nop
+  0x000000010fca5dfb: nop
+  0x000000010fca5dfc: nop
+  0x000000010fca5dfd: nop
+  0x000000010fca5dfe: nop
+  0x000000010fca5dff: nop
+[Verified Entry Point]
+  ;; B1: #	N18 <- BLOCK HEAD IS JUNK   Freq: 1
+
+  0x000000010fca5e00: mov    %eax,-0x16000(%rsp)
+  0x000000010fca5e07: push   %rbp
+  0x000000010fca5e08: sub    $0x10,%rsp         ;*synchronization entry
+                                                ; - SyncNo::incCounter@-1 (line 4)
+
+  0x000000010fca5e0c: incl   0xc(%rsi)          ;*putfield counter
+                                                ; - SyncNo::incCounter@7 (line 4)
+
+  0x000000010fca5e0f: add    $0x10,%rsp
+  0x000000010fca5e13: pop    %rbp
+  0x000000010fca5e14: test   %eax,-0xafae1a(%rip)        # 0x000000010f1ab000
+                                                ;   {poll_return}
+  0x000000010fca5e1a: retq   
+  0x000000010fca5e1b: hlt    
+  0x000000010fca5e1c: hlt    
+  0x000000010fca5e1d: hlt    
+  0x000000010fca5e1e: hlt    
+  0x000000010fca5e1f: hlt    
+[Exception Handler]
+[Stub Code]
+  0x000000010fca5e20: jmpq   0x000000010fc6e3e0  ;   {no_reloc}
+[Deopt Handler Code]
+  0x000000010fca5e25: callq  0x000000010fca5e2a
+  0x000000010fca5e2a: subq   $0x5,(%rsp)
+  0x000000010fca5e2f: jmpq   0x000000010fc0a7a0  ;   {runtime_call DeoptimizationBlob}
+  0x000000010fca5e34: hlt    
+  0x000000010fca5e35: hlt    
+  0x000000010fca5e36: hlt    
+  0x000000010fca5e37: hlt    
+pc-bytecode offsets:
+PcDesc(pc=0x10fca5ddf offset=ffffffff bits=0):
+PcDesc(pc=0x10fca5e0c offset=2c bits=0):
+   SyncNo::incCounter@-1 (line 4)
+PcDesc(pc=0x10fca5e0f offset=2f bits=0):
+   SyncNo::incCounter@7 (line 4)
+PcDesc(pc=0x10fca5e39 offset=59 bits=0):
+------------------------------------------------------------------------
+SyncNo::incCounter()V
+  interpreter_invocation_count:    34678 
+  invocation_counter:               9682 
+  backedge_counter:                    1 
+  mdo size: 352 bytes
+
+0 fast_aload_0
+1 dup
+2 fast_igetfield 1 <SyncNo.counter/I> 
+5 iconst_1
+6 iadd
+7 fast_iputfield 1 <SyncNo.counter/I> 
+10 return
+------------------------------------------------------------------------
+Total MDO size: 352 bytes

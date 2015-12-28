@@ -1,0 +1,8 @@
+file /Users/wei/wsp/9dev/build/macosx-x86_64-normal-server-slowdebug/jdk/bin//java
+b main
+handle SIGSEGV pass nostop
+#r -server -XX:+UseParallelGC -XX:+PrintGC -XX:+PrintGCDetails GCTrigger
+#r -server -XX:+UseConcMarkSweepGC -XX:+PrintGC -XX:+PrintGCDetails GCTrigger
+r -server -XX:+UseG1GC -XX:+PrintGC -XX:+PrintGCDetails GCTrigger
+
+#r -server -XX:+UseG1GC -XX:+PrintGC -XX:+PrintGCDetails GCTrigger

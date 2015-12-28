@@ -1,0 +1,103 @@
+Classfile /Users/wei/wsp/UnitTest/Java/Synchronization/SyncNo.class
+  Last modified 2015-6-28; size 464 bytes
+  MD5 checksum 0fd24dc6bb44424ae421130bafbfd981
+  Compiled from "SyncNo.java"
+public class SyncNo
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Fieldref           #3.#20         // SyncNo.counter:I
+   #2 = Methodref          #7.#21         // java/lang/Object."<init>":()V
+   #3 = Class              #22            // SyncNo
+   #4 = Methodref          #3.#21         // SyncNo."<init>":()V
+   #5 = Integer            10000000
+   #6 = Methodref          #3.#23         // SyncNo.incCounter:()V
+   #7 = Class              #24            // java/lang/Object
+   #8 = Utf8               counter
+   #9 = Utf8               I
+  #10 = Utf8               incCounter
+  #11 = Utf8               ()V
+  #12 = Utf8               Code
+  #13 = Utf8               LineNumberTable
+  #14 = Utf8               <init>
+  #15 = Utf8               main
+  #16 = Utf8               ([Ljava/lang/String;)V
+  #17 = Utf8               StackMapTable
+  #18 = Utf8               SourceFile
+  #19 = Utf8               SyncNo.java
+  #20 = NameAndType        #8:#9          // counter:I
+  #21 = NameAndType        #14:#11        // "<init>":()V
+  #22 = Utf8               SyncNo
+  #23 = NameAndType        #10:#11        // incCounter:()V
+  #24 = Utf8               java/lang/Object
+{
+  int counter;
+    descriptor: I
+    flags:
+
+  public void incCounter();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: getfield      #1                  // Field counter:I
+         5: iconst_1
+         6: iadd
+         7: putfield      #1                  // Field counter:I
+        10: return
+      LineNumberTable:
+        line 4: 0
+        line 5: 10
+
+  public SyncNo();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #2                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iconst_0
+         6: putfield      #1                  // Field counter:I
+         9: return
+      LineNumberTable:
+        line 7: 0
+        line 8: 4
+        line 9: 9
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: new           #3                  // class SyncNo
+         3: dup
+         4: invokespecial #4                  // Method "<init>":()V
+         7: astore_1
+         8: iconst_0
+         9: istore_2
+        10: iload_2
+        11: ldc           #5                  // int 10000000
+        13: if_icmpge     26
+        16: aload_1
+        17: invokevirtual #6                  // Method incCounter:()V
+        20: iinc          2, 1
+        23: goto          10
+        26: return
+      LineNumberTable:
+        line 12: 0
+        line 13: 8
+        line 14: 16
+        line 13: 20
+        line 15: 26
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 10
+          locals = [ class SyncNo, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 15
+}
+SourceFile: "SyncNo.java"
