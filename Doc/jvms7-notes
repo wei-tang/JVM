@@ -1,0 +1,38 @@
+Java virtual machine operates on two kinds of types:
+Primitive Types:
+  +++ numeric types
+   ++++ integral types
+     ++++++ byte (8bits): -2^7 ~ 2^7 - 1
+     ++++++ short (16bits) -2^15 ~ 2^15 - 1
+     ++++++ int (32bits) -2^31 ~ 2^31 - 1
+     ++++++ long (64bits) -2^63 ~ 2^63 - 1 
+     ++++++ char (16bits: UTF-16) default value:'\u0000'  0 ~ 65535
+    
+   ++++ floating-point types 
+     ++++++ float 
+     ++++++ double
+
+  +++ boolean type: boolean (default value is false)
+     Java Virtual Machine does directly support boolean arrays. Its newarray 
+     instruction enables creation of boolean arrays. Arrays of type boolean 
+     are accessed and modified using the byte array instructions baload and bastore. 
+
+  +++ returnAddress type
+    The values of the returnAddress type are points to the opcode of Java Virtual Machine instructions.
+    The returnAddress type is not directly associated with a Java programming language type.  
+    The returnAddress type is used by the Java Virtual Machine's jsr,ret and jsr_w instructions.
+
+Reference Types:
+  +++ class types 
+  +++ array types 
+  +++ interface 
+
+pc Register:
+  Each Java Virtual Machine thread has its own pc(program counter) register.
+  If the method is not native, the pc register contains the address of the Java Virtual Machine 
+  instruction currently being executed. If the method is native, the value of the Java Virtual 
+  Machine's pc register is undefined. 
+
+Object: Java Virtual Machine contains explicit support for objects: class instance or array 
+
+
